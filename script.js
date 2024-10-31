@@ -1,8 +1,11 @@
 const clickerEl = document.querySelector(".playarea__clicker");
 const counterEl = document.querySelector(".counter__current");
 const powerupsEl = document.querySelector(".powerups");
+const Telegram = window.Telegram.WebApp
 
-let counter = 9000;
+const userData = Telegram.initData
+
+let counter = userData;
 // let counter = +localStorage.getItem("score");
 counterEl.innerHTML = counter;
 
@@ -94,7 +97,7 @@ function calcPrice() {
 
 clickerEl.addEventListener("click", () => {
   counter += clickValue;
-  counterEl.innerHTML = counter;
+  //counterEl.innerHTML = counter;
 });
 
 setInterval(() => {
@@ -102,7 +105,7 @@ setInterval(() => {
   const profitPersec = powerups.reduce((acc, val) => (val.onclick ? acc : acc + val.profit), 0);
   // напишите код, чтобы в счетчик добавлялся посекундный профит
   // и обновите значение html элемента, который отвечает за счетчик
-  localStorage.setItem("score", counter);
+  //localStorage.setItem("score", counter);
 }, 1000);
 
 const generatePowerUp = (powerup) => {
@@ -139,14 +142,14 @@ const renderPowerups = () => {
 //
 
 const buyPowerup = (powerup) => {
-  if (counter >= powerup.price()) {
-    counter -= powerup.price();
-    powerup.amount++;
-    renderPowerups();
-    counterEl.innerHTML = counter;
-  } else {
-    alert("Not enough money");
-  }
+  //if (counter >= powerup.price()) {
+  //  counter -= powerup.price();
+  //  powerup.amount++;
+  //  renderPowerups();
+  //  counterEl.innerHTML = counter;
+  //} else {
+  //  alert("Not enough money");
+  //}
 };
 
 renderPowerups();
@@ -158,4 +161,4 @@ counter += powerups.reduce((acc, val) => {
   return val.onclick ? acc : acc + val.profit;
 }, 0);
 
-counterEl.innerHTML = counter;
+//counterEl.innerHTML = counter;
